@@ -1,0 +1,97 @@
+﻿<Window x:Class="Magnit_app.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Magnit_app"
+        mc:Ignorable="d"
+         Title="SOMED RB5 v27 prefinal" Height="900" Width="1600" MinHeight="900" MinWidth="1600" 
+        FontFamily="Malgun Gothic" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="Recources/MagnitLogo.png">
+    <Grid>
+        <!--<Border CornerRadius="0 0 10 10" Background="#f0f5ff" 
+                Grid.RowSpan="1" Grid.ColumnSpan="3"/>
+        <Border CornerRadius="0 0 10 10" Background="#f0f5ff" 
+                Grid.Row="1" Grid.ColumnSpan="3"/>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border CornerRadius="10 10 10 10" Background="#FFF7F9FF" 
+                Grid.Column="0" Margin="10 10 10 10"
+                x:Name="BrdMenu">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="DarkGray" ShadowDepth="0" Opacity="0.25"/>
+            </Border.Effect>
+        </Border>
+        <Border CornerRadius="10 10 10 10" Background="#FFF5F8FF" 
+                Grid.Column="1" Margin="10 10 10 10"
+                x:Name="BrdInfo">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="DarkGray" ShadowDepth="0" Opacity="0.25"/>
+            </Border.Effect>
+        </Border>
+
+        <StackPanel
+            x:Name="StMenu">
+            <!--UserName-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20 0 0 0">
+                <Image x:Name="Imglogo" Source="Recources/MagnitLogo.png" Width="180" Margin="15 40 0 0"></Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30 25 0 0">
+
+                <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
+                    <TextBlock Text="Приветствуем Вас," FontSize="20" Margin="0 0 0 5" Foreground="#FF2591F2"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  FontSize="22" Foreground="#FF003763" FontWeight="Bold" Name="TBName"  Margin="0 0 5 5"/>
+                        <TextBlock  FontSize="22" Margin="0 0 0 5" Foreground="#FF003763" FontWeight="Bold" Name="TextBLastName"/>
+                    </StackPanel>
+                    
+                    <!--<TextBlock Text="Администратор" FontSize="16" Foreground="#FF5C7BDE"/>-->
+                </StackPanel>
+
+            </StackPanel>
+
+
+            <Separator Height="0.8" Margin="20 30" Background="#46558a"/>
+
+
+            <!--Menu Buttons-->
+            <Button Width="260" Content="Работники" 
+                    TextBlock.FontSize="16" 
+                    x:Name="BtnWorkers" Click="BtnWorkers_Click"
+                    Margin="0 0 0 20"/>
+            <Button Width="260" Content="Задачи" 
+                    TextBlock.FontSize="16"
+                    x:Name="BtnTasks" Click="BtnTasks_Click"
+                    Margin="0 0 0 30"/>
+            <Button Width="260" Content="Товары на складе" 
+                    TextBlock.FontSize="16"
+                    x:Name="BtnProducts" Click="BtnProducts_Click"
+                    Margin="0 0 0 20"/>
+            <Button Width="260" Content="Продажи" 
+                    TextBlock.FontSize="16"
+                    x:Name="BtnSales" Click="BtnSales_Click"
+                    Margin="0 0 0 30"/>
+            <Button Width="260" Content="Назад" TextBlock.FontSize="16"
+                    Margin="0 0 0 20"
+                    x:Name="BtnBack" Click="BtnBack_Click"/>
+            <Button Width="260" Content="В главное меню" TextBlock.FontSize="16"
+                    Margin="0 0 0 20"
+                    x:Name="BtnBackTM" Click="BtnBackTM_Click"/>
+
+            <Button Width="260" Content="О программе" TextBlock.FontSize="16" 
+                    Margin="0 250 0 0" Name="BtnAbout" Click="BtnAbout_Click"/>
+            <Button Width="260" Content="Выйти из системы" TextBlock.FontSize="16" 
+                    Margin="0 20 0 0" Name="BtnQuit" Click="BtnQuit_Click"/>
+
+
+        </StackPanel>
+
+
+        <Frame Grid.ColumnSpan="2"
+               Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>
+
+
+    </Grid>
+</Window>

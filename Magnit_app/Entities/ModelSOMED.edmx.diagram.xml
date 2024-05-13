@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="427ed37642e9470ea94848d8a5eaa291" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="SOMEDModel.Ambulance" Width="1.5" PointX="5.25" PointY="60.25" />
+        <EntityTypeShape EntityType="SOMEDModel.BloodService" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="SOMEDModel.Cosmetology" Width="1.5" PointX="5.25" PointY="78.5" />
+        <EntityTypeShape EntityType="SOMEDModel.Denistry" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="SOMEDModel.Divisions" Width="1.5" PointX="0.75" PointY="43.125" />
+        <EntityTypeShape EntityType="SOMEDModel.Educations" Width="1.5" PointX="0.75" PointY="48.5" />
+        <EntityTypeShape EntityType="SOMEDModel.Employees" Width="1.5" PointX="3" PointY="42.5" />
+        <EntityTypeShape EntityType="SOMEDModel.FuncDiag" Width="1.5" PointX="5.25" PointY="26.625" />
+        <EntityTypeShape EntityType="SOMEDModel.Jobs" Width="1.5" PointX="0.75" PointY="52" />
+        <EntityTypeShape EntityType="SOMEDModel.Laboratory" Width="1.5" PointX="5.25" PointY="41.125" />
+        <EntityTypeShape EntityType="SOMEDModel.Lor" Width="1.5" PointX="5.25" PointY="37.5" />
+        <EntityTypeShape EntityType="SOMEDModel.MonitorEquip" Width="1.5" PointX="5.25" PointY="52.25" />
+        <EntityTypeShape EntityType="SOMEDModel.Neonatology" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="SOMEDModel.NetworkEquip" Width="1.5" PointX="5.25" PointY="82.125" />
+        <EntityTypeShape EntityType="SOMEDModel.Obstetric" Width="1.5" PointX="5.25" PointY="85.875" />
+        <EntityTypeShape EntityType="SOMEDModel.Ophtalmology" Width="1.5" PointX="5.25" PointY="67.375" />
+        <EntityTypeShape EntityType="SOMEDModel.PCEquip" Width="1.5" PointX="5.25" PointY="55.875" />
+        <EntityTypeShape EntityType="SOMEDModel.PhysTherapy" Width="1.5" PointX="5.25" PointY="15.375" />
+        <EntityTypeShape EntityType="SOMEDModel.PrintEquip" Width="1.5" PointX="5.25" PointY="22.75" />
+        <EntityTypeShape EntityType="SOMEDModel.ProjectorEquip" Width="1.5" PointX="5.25" PointY="63.875" />
+        <EntityTypeShape EntityType="SOMEDModel.Radiology" Width="1.5" PointX="5.25" PointY="71.125" />
+        <EntityTypeShape EntityType="SOMEDModel.Reanimation" Width="1.5" PointX="5.25" PointY="74.75" />
+        <EntityTypeShape EntityType="SOMEDModel.Sections" Width="1.5" PointX="0.75" PointY="46.125" />
+        <EntityTypeShape EntityType="SOMEDModel.ServerEquip" Width="1.5" PointX="5.25" PointY="30.25" />
+        <EntityTypeShape EntityType="SOMEDModel.Surgery" Width="1.5" PointX="5.25" PointY="44.875" />
+        <EntityTypeShape EntityType="SOMEDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SOMEDModel.UPSEquip" Width="1.5" PointX="5.25" PointY="48.5" />
+        <EntityTypeShape EntityType="SOMEDModel.Users" Width="1.5" PointX="5.25" PointY="12.375" />
+        <EntityTypeShape EntityType="SOMEDModel.VideoControl" Width="1.5" PointX="5.25" PointY="33.75" />
+        <AssociationConnector Association="SOMEDModel.FK_Ambulance_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_BloodService_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Cosmetology_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Denistry_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Employees_Divisions" />
+        <AssociationConnector Association="SOMEDModel.FK_Employees_Educations" />
+        <AssociationConnector Association="SOMEDModel.FK_Employees_Jobs" />
+        <AssociationConnector Association="SOMEDModel.FK_Employees_Sections" />
+        <AssociationConnector Association="SOMEDModel.FK_FuncDiag_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Laboratory_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Lor_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_MonitorEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Neonatology_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_NetworkEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Obstetric_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Ophtalmology_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_PCEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_PhysTherapy_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_PrintEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_ProjectorEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Radiology_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Reanimation_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_ServerEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Surgery_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_UPSEquip_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_Users_Employees" />
+        <AssociationConnector Association="SOMEDModel.FK_VideoControl_Employees" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
