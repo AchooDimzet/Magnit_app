@@ -25,9 +25,14 @@
                 <TextBlock Text="Отчество:" FontSize="16" FontWeight="Bold"/>
                 <TextBox Name="TbPatronymic" FontSize="16"/>
             </DockPanel>
+            
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Должность: " FontSize="16" FontWeight="Bold"/>
                 <ComboBox Name="CbRole"  FontSize="16" DisplayMemberPath="Name"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="10 5">
+                <TextBlock Text="Пол: " FontSize="16" FontWeight="Bold"/>
+                <ComboBox Name="CbGender"  FontSize="16" DisplayMemberPath="Name"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Телефон: " FontSize="16" FontWeight="Bold"/>
@@ -39,7 +44,7 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Магазин: " FontSize="16" FontWeight="Bold"/>
-                <ComboBox Name="CbStore" FontSize="16"/>
+                <ComboBox Name="CbStore" FontSize="16" DisplayMemberPath="Adress"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Логин: " FontSize="16" FontWeight="Bold"/>
@@ -49,7 +54,7 @@
                 <TextBlock Text="Пароль: " FontSize="16" FontWeight="Bold"/>
                 <PasswordBox Name="TbPassword" FontSize="16"/>
             </DockPanel>
-            <Button Content="Сохранить" Name="BtnSave" FontSize="16" FontWeight="Bold" Margin="10 5"/>
+            <Button Content="Сохранить" Name="BtnSave" Click="BtnSave_Click" FontSize="16" FontWeight="Bold" Margin="10 5"/>
         </DockPanel>
 
         <StackPanel Grid.Column="1" VerticalAlignment="Center">

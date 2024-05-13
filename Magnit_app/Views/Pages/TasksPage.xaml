@@ -5,10 +5,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Magnit_app.Views.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1700"
       Title="TasksPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Margin="20 0 0 0">
+            <Label 
+           FontSize="28" VerticalAlignment="Center"
+           Margin="0 0 40 0"
+           FontWeight="Bold">Задачи</Label>
+            <TextBlock Text="Поиск"
+                   FontSize="28" VerticalAlignment="Center"
+                   Margin="0 0 20 0"/>
+            <TextBox Width="240" Name="TBoxSearch"
+                 Margin="0 0 40 0"
+                 FontSize="26"
+                 TextChanged="TBoxSearch_TextChanged"></TextBox>
+        </WrapPanel>
+
+
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" SelectionMode="Single"  Name ="WorkersDG" Grid.Row="2" Grid.Column="1" Margin="20 0 20 20" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+      CanUserResizeRows="False" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="ФИО" Binding="{Binding Workers.FullName}"/>
+                <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Roles.Name}"/>
+                <DataGridTextColumn Width="*" Header="Задача" Binding="{Binding Task_text}"/>
+                <DataGridTemplateColumn Header="Редактирование" x:Name="EditButtonsColumn">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Edit_Button" Click="Edit_Button_Click">Редактировать</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Задача выполнена" Width="180" x:Name="DeleteColumn">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <Button Name="DeleteButton" Click="DeleteButton_Click" Padding="10 5">Завершить</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="20 0 0 0">
+            <Button Name="Add_Button" Width="200" Content="Добавить запись" Click="Add_Button_Click" Grid.Row="4" Grid.Column="1" Margin="0 5" TextBlock.FontSize="18"/>
+            <!--<Button Name="Delete_Button" Width="200" Content="Удалить запись" Click="Delete_Button_Click" Grid.Row="4" Grid.Column="1" Margin="5" TextBlock.FontSize="18"/>-->
+            <!--<Button Name="Edit_Button" Width="250" Content="Редактировать запись" Click="Edit_Button_Click" Grid.Row="4" Grid.Column="1" Margin="5" TextBlock.FontSize="18"/>-->
+        </StackPanel>
+        <Button Name="Refresh_Button" Width="200" Content="Обновить" Click="Refresh_Button_Click" Grid.Row="4" Grid.Column="1" Margin="0 5 20 5" TextBlock.FontSize="18" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

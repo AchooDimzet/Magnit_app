@@ -40,7 +40,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="ФИО" Binding="{Binding FullName}"/>
                 <DataGridTextColumn Width="*" Header="Логин" Binding="{Binding Login}"/>
-                <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Id_role.Name}"/>
+                <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Roles.Name}"/>
                 <DataGridTemplateColumn Header="Редактирование" x:Name="EditButtonsColumn">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

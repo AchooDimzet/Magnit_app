@@ -29,110 +29,97 @@ namespace Magnit_app.Views.Windows
         public AddWorkerWindow()
         {
             InitializeComponent();
-            //CbDepartment.ItemsSource = AppData.Context.Departments.Where(p => p.IsValid == true).ToList();
-            //CbEducationType.ItemsSource = AppData.Context.EducationTypes.ToList();
-            //List<Departments> departments = new List<Departments>();
-            ////departments = AppData.Context.Departments.ToList();
-            ////education = AppData.Context.EducationTypes.ToList
+            CbRole.ItemsSource = AppData.Context.Roles.ToList();
+            List<Roles> roles = new List<Roles>();
+            CbStore.ItemsSource = AppData.Context.Store.ToList();
+            CbGender.ItemsSource = AppData.Context.Gender.ToList();
+            //departments = AppData.Context.Departments.ToList();
+            //education = AppData.Context.EducationTypes.ToList
         }
-        //public AddWorkerWindow(Workers selectedWorker)
-        //{
-            //InitializeComponent();
-        //    currentWorker = selectedWorker;
+        public AddWorkerWindow(Workers selectedWorker)
+        {
+            InitializeComponent();
+            currentWorker = selectedWorker;
 
-        //    DataContext = currentWorker;
+            DataContext = currentWorker;
 
-        //    CbDepartment.ItemsSource = AppData.Context.Departments.Where(p => p.IsValid == true).ToList();
-        //    CbEducationType.ItemsSource = AppData.Context.EducationTypes.ToList();
+            CbRole.ItemsSource = AppData.Context.Roles.ToList();
 
-        //    TbFirstName.Text = selectedWorker.FirstName;
-        //    TbLastName.Text = selectedWorker.LastName;
-        //    TbPatronymic.Text = selectedWorker.Patronymic;
-        //    CbDepartment.SelectedIndex = selectedWorker.Department_Id;
-        //    TbJob.Text = selectedWorker.Job;
-        //    TbPhone.Text = selectedWorker.Phone;
-        //    CbEducationType.SelectedIndex = selectedWorker.EducationType_Id;
-        //    TbInstitution.Text = selectedWorker.Institution;
-        //    TbSpecialisation.Text = selectedWorker.Specialisation;
-        //    TbLogin.Text = selectedWorker.Login;
-        //    TbPassword.Password = selectedWorker.Password;
-        //    if (selectedWorker.Role == true)
-        //    {
-        //        CbRole.SelectedIndex = 0;
-        //    }
-        //    else
-        //        CbRole.SelectedIndex = 1;
-            
-        //    _image = selectedWorker.Photo;
+            CbStore.ItemsSource = AppData.Context.Store.ToList();
 
-        //    Image.DataContext = _image;
-        //}
+            TbFirstName.Text = selectedWorker.First_name;
+            TbLastName.Text = selectedWorker.Last_name;
+            TbPatronymic.Text = selectedWorker.Patronimyc;
+            CbRole.SelectedIndex = selectedWorker.Id_role;
+            CbGender.SelectedIndex = selectedWorker.Gender;
+            TbPhone.Text = selectedWorker.Phone;
+            TbAdress.Text = selectedWorker.Adress;
+            CbStore.SelectedIndex = selectedWorker.Id_store;
+            TbLogin.Text = selectedWorker.Login;
+            TbPassword.Password = selectedWorker.Password;
 
-        //private void BtnSave_Click(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (currentWorker == null)
-        //        {
-        //            AppData.Context.Workers.Add(new Workers()
-        //            {
-        //                FirstName = TbFirstName.Text,
-        //                LastName = TbLastName.Text,
-        //                Patronymic = TbPatronymic.Text,
-        //                Department_Id = (CbDepartment.SelectedItem as Departments).Id,
-        //                Job = TbJob.Text,
-        //                Phone = TbPhone.Text,
-        //                EducationType_Id = (CbEducationType.SelectedItem as EducationTypes).Id,
-        //                Institution = TbInstitution.Text,
-        //                Specialisation = TbSpecialisation.Text,
-        //                Login = TbLogin.Text,
-        //                Password = TbPassword.Password,
-        //                Photo = _image,
-        //                Role = CbRole.SelectedIndex == 0,
-        //                IsValid = true
-        //                });
-        //            AppData.Context.SaveChanges();
-        //            this.Close();
-        //        }
-        //        else
-        //        {
-        //            currentWorker.FirstName = TbFirstName.Text;
-        //            currentWorker.LastName = TbLastName.Text;
-        //            currentWorker.Patronymic = TbPatronymic.Text;
-        //            currentWorker.Department_Id = (CbDepartment.SelectedItem as Departments).Id;
-        //            currentWorker.Job = TbJob.Text;
-        //            currentWorker.Phone = TbPhone.Text;
-        //            currentWorker.EducationType_Id = (CbEducationType.SelectedItem as EducationTypes).Id;
-        //            currentWorker.Institution = TbInstitution.Text;
-        //            currentWorker.Specialisation = TbSpecialisation.Text;
-        //            currentWorker.Login = TbLogin.Text;
-        //            currentWorker.Password = TbPassword.Password;
-        //            currentWorker.Photo = _image;
-        //            if (CbRole.SelectedIndex == 0)
-        //                currentWorker.Role = true;
-        //            else
-        //                currentWorker.Role = false;
-        //            currentWorker.IsValid = true;
-        //            AppData.Context.SaveChanges();
-        //            this.Close();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-            
-        //}
+            _image = selectedWorker.Photo;
 
-        //private void BtnAddPhoto_Click(object sender, RoutedEventArgs e)
-        //{
-        //    OpenFileDialog ofd = new OpenFileDialog();
-        //    ofd.Filter = "Images |*.png; *.jpg";
-        //    if (ofd.ShowDialog() == true)
-        //    {
-        //        _image = File.ReadAllBytes(ofd.FileName);
-        //        Image.DataContext = _image;
-        //}
-        //}
+            Image.DataContext = _image;
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //try
+            //{
+                if (currentWorker == null)
+                {
+                    AppData.Context.Workers.Add(new Workers()
+                    {
+                        First_name = TbFirstName.Text,
+                        Last_name = TbLastName.Text,
+                        Patronimyc = TbPatronymic.Text,
+                        Id_role = (CbRole.SelectedItem as Roles).Id,
+                        Gender1 = (CbGender.SelectedItem as Gender),
+                        Phone = TbPhone.Text,
+                        Adress = TbAdress.Text,
+                        Id_store = (CbStore.SelectedItem as Store).Id,
+                        Login = TbLogin.Text,
+                        Password = TbPassword.Password,
+                        Photo = _image,
+                        IsDeleted = false
+                    });
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    currentWorker.First_name = TbFirstName.Text;
+                    currentWorker.Last_name = TbLastName.Text;
+                    currentWorker.Patronimyc = TbPatronymic.Text;
+                    currentWorker.Id_role = (CbRole.SelectedItem as Roles).Id;
+                    currentWorker.Gender = (CbGender.SelectedItem as Gender).Id;
+                    currentWorker.Phone = TbPhone.Text;
+                    currentWorker.Id_store = (CbStore.SelectedItem as Store).Id;
+                    currentWorker.Login = TbLogin.Text;
+                    currentWorker.Password = TbPassword.Password;
+                    currentWorker.Photo = _image;
+                    currentWorker.IsDeleted = false;
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+        }
+
+        private void BtnAddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Images |*.png; *.jpg";
+            if (ofd.ShowDialog() == true)
+            {
+                _image = File.ReadAllBytes(ofd.FileName);
+                Image.DataContext = _image;
+            }
+        }
     }
 }

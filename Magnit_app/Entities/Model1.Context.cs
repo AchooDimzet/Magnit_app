@@ -28,13 +28,12 @@ namespace Magnit_app.Entities
         public virtual DbSet<ClientDiscount> ClientDiscount { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Product_items> Product_items { get; set; }
+        public virtual DbSet<ProductSales> ProductSales { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }
-        public virtual DbSet<Specialisations> Specialisations { get; set; }
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Workers> Workers { get; set; }
-        public virtual DbSet<ProductSales> ProductSales { get; set; }
         public virtual DbSet<Worker_tasks> Worker_tasks { get; set; }
     }
 }

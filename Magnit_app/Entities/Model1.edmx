@@ -58,13 +58,6 @@
           <Property Name="Id_item" Type="int" Nullable="false" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Specialisations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="Store">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,19 +75,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Magnit_db.dbo.Worker_tasks" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Worker_tasks">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Id_worker" />
-            <PropertyRef Name="Task_text" />
-            <PropertyRef Name="Is_comleted" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_worker" Type="int" Nullable="false" />
           <Property Name="Task_text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Is_comleted" Type="bit" Nullable="false" />
+          <Property Name="DateOfTask" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
@@ -108,11 +97,11 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Id_store" Type="int" Nullable="false" />
           <Property Name="Id_role" Type="int" Nullable="false" />
-          <Property Name="Id_specialisation" Type="int" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Gender" Type="int" Nullable="false" />
           <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" Nullable="false" />
         </EntityType>
         <Association Name="FK_ClientDiscount_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -198,18 +187,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Workers_Specialisations">
-          <End Role="Specialisations" Type="Self.Specialisations" Multiplicity="1" />
-          <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specialisations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Workers">
-              <PropertyRef Name="Id_specialisation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Workers_Store">
           <End Role="Store" Type="Self.Store" Multiplicity="1" />
           <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
@@ -229,18 +206,10 @@
           <EntitySet Name="ProductSales" EntityType="Self.ProductSales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Specialisations" EntityType="Self.Specialisations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker_tasks" EntityType="Self.Worker_tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Worker_tasks" EntityType="Self.Worker_tasks" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Worker_tasks].[Id] AS [Id], 
-    [Worker_tasks].[Id_worker] AS [Id_worker], 
-    [Worker_tasks].[Task_text] AS [Task_text], 
-    [Worker_tasks].[Is_comleted] AS [Is_comleted]
-    FROM [dbo].[Worker_tasks] AS [Worker_tasks]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_ClientDiscount_Gender" Association="Self.FK_ClientDiscount_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="ClientDiscount" EntitySet="ClientDiscount" />
@@ -267,10 +236,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Workers_Roles" Association="Self.FK_Workers_Roles">
             <End Role="Roles" EntitySet="Roles" />
-            <End Role="Workers" EntitySet="Workers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Workers_Specialisations" Association="Self.FK_Workers_Specialisations">
-            <End Role="Specialisations" EntitySet="Specialisations" />
             <End Role="Workers" EntitySet="Workers" />
           </AssociationSet>
           <AssociationSet Name="FK_Workers_Store" Association="Self.FK_Workers_Store">
@@ -314,6 +279,17 @@
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ProductSales" Relationship="Self.FK_ProductSales_Product_items" FromRole="Product_items" ToRole="ProductSales" />
         </EntityType>
+        <EntityType Name="ProductSales">
+          <Key>
+            <PropertyRef Name="Id_sale" />
+            <PropertyRef Name="Id_product" />
+          </Key>
+          <Property Name="Id_sale" Type="Int32" Nullable="false" />
+          <Property Name="Id_product" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product_items" Relationship="Self.FK_ProductSales_Product_items" FromRole="ProductSales" ToRole="Product_items" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK_ProductSales_Sales" FromRole="ProductSales" ToRole="Sales" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="Id" />
@@ -332,14 +308,6 @@
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProductSales" Relationship="Self.FK_ProductSales_Sales" FromRole="Sales" ToRole="ProductSales" />
           <NavigationProperty Name="Workers" Relationship="Self.FK_Sales_Workers" FromRole="Sales" ToRole="Workers" />
-        </EntityType>
-        <EntityType Name="Specialisations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Workers" Relationship="Self.FK_Workers_Specialisations" FromRole="Specialisations" ToRole="Workers" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -371,41 +339,27 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Id_store" Type="Int32" Nullable="false" />
           <Property Name="Id_role" Type="Int32" Nullable="false" />
-          <Property Name="Id_specialisation" Type="Int32" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Gender1" Relationship="Self.FK_Workers_Gender" FromRole="Workers" ToRole="Gender" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Workers_Roles" FromRole="Workers" ToRole="Roles" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Workers" FromRole="Workers" ToRole="Sales" />
-          <NavigationProperty Name="Specialisations" Relationship="Self.FK_Workers_Specialisations" FromRole="Workers" ToRole="Specialisations" />
           <NavigationProperty Name="Store" Relationship="Self.FK_Workers_Store" FromRole="Workers" ToRole="Store" />
           <NavigationProperty Name="Worker_tasks" Relationship="Self.FK_Worker_tasks_Workers" FromRole="Workers" ToRole="Worker_tasks" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="ProductSales">
-          <Key>
-            <PropertyRef Name="Id_sale" />
-            <PropertyRef Name="Id_product" />
-          </Key>
-          <Property Name="Id_sale" Type="Int32" Nullable="false" />
-          <Property Name="Id_product" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product_items" Relationship="Self.FK_ProductSales_Product_items" FromRole="ProductSales" ToRole="Product_items" />
-          <NavigationProperty Name="Sales" Relationship="Self.FK_ProductSales_Sales" FromRole="ProductSales" ToRole="Sales" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Worker_tasks">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="Id_worker" />
-            <PropertyRef Name="Task_text" />
-            <PropertyRef Name="Is_comleted" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Id_worker" Type="Int32" Nullable="false" />
           <Property Name="Task_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Is_comleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Workers" Relationship="Self.FK_Worker_tasks_Workers" FromRole="Worker_tasks" ToRole="Workers" />
+          <Property Name="DateOfTask" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_ClientDiscount_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -443,18 +397,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Workers_Roles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-          <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Workers">
-              <PropertyRef Name="Id_role" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProductSales_Sales">
           <End Role="Sales" Type="Self.Sales" Multiplicity="1" />
           <End Role="ProductSales" Type="Self.ProductSales" Multiplicity="*" />
@@ -467,6 +409,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Workers_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workers">
+              <PropertyRef Name="Id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sales_Workers">
           <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
           <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
@@ -476,18 +430,6 @@
             </Principal>
             <Dependent Role="Sales">
               <PropertyRef Name="Id_worker" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Workers_Specialisations">
-          <End Role="Specialisations" Type="Self.Specialisations" Multiplicity="1" />
-          <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specialisations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Workers">
-              <PropertyRef Name="Id_specialisation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -519,13 +461,12 @@
           <EntitySet Name="ClientDiscount" EntityType="Self.ClientDiscount" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="Product_items" EntityType="Self.Product_items" />
+          <EntitySet Name="ProductSales" EntityType="Self.ProductSales" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Sales" EntityType="Self.Sales" />
-          <EntitySet Name="Specialisations" EntityType="Self.Specialisations" />
           <EntitySet Name="Store" EntityType="Self.Store" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Workers" EntityType="Self.Workers" />
-          <EntitySet Name="ProductSales" EntityType="Self.ProductSales" />
           <EntitySet Name="Worker_tasks" EntityType="Self.Worker_tasks" />
           <AssociationSet Name="FK_ClientDiscount_Gender" Association="Self.FK_ClientDiscount_Gender">
             <End Role="Gender" EntitySet="Gender" />
@@ -539,21 +480,17 @@
             <End Role="Product_items" EntitySet="Product_items" />
             <End Role="ProductSales" EntitySet="ProductSales" />
           </AssociationSet>
-          <AssociationSet Name="FK_Workers_Roles" Association="Self.FK_Workers_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Workers" EntitySet="Workers" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProductSales_Sales" Association="Self.FK_ProductSales_Sales">
             <End Role="Sales" EntitySet="Sales" />
             <End Role="ProductSales" EntitySet="ProductSales" />
           </AssociationSet>
+          <AssociationSet Name="FK_Workers_Roles" Association="Self.FK_Workers_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Workers" EntitySet="Workers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sales_Workers" Association="Self.FK_Sales_Workers">
             <End Role="Workers" EntitySet="Workers" />
             <End Role="Sales" EntitySet="Sales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Workers_Specialisations" Association="Self.FK_Workers_Specialisations">
-            <End Role="Specialisations" EntitySet="Specialisations" />
-            <End Role="Workers" EntitySet="Workers" />
           </AssociationSet>
           <AssociationSet Name="FK_Workers_Store" Association="Self.FK_Workers_Store">
             <End Role="Store" EntitySet="Store" />
@@ -601,6 +538,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductSales">
+            <EntityTypeMapping TypeName="Magnit_dbModel.ProductSales">
+              <MappingFragment StoreEntitySet="ProductSales">
+                <ScalarProperty Name="Id_sale" ColumnName="Id_sale" />
+                <ScalarProperty Name="Id_product" ColumnName="Id_product" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="Magnit_dbModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
@@ -616,14 +562,6 @@
                 <ScalarProperty Name="Id_worker" ColumnName="Id_worker" />
                 <ScalarProperty Name="Id_item" ColumnName="Id_item" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Specialisations">
-            <EntityTypeMapping TypeName="Magnit_dbModel.Specialisations">
-              <MappingFragment StoreEntitySet="Specialisations">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -649,7 +587,7 @@
           <EntitySetMapping Name="Workers">
             <EntityTypeMapping TypeName="Magnit_dbModel.Workers">
               <MappingFragment StoreEntitySet="Workers">
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="First_name" ColumnName="First_name" />
                 <ScalarProperty Name="Last_name" ColumnName="Last_name" />
                 <ScalarProperty Name="Patronimyc" ColumnName="Patronimyc" />
@@ -658,25 +596,17 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Id_store" ColumnName="Id_store" />
                 <ScalarProperty Name="Id_role" ColumnName="Id_role" />
-                <ScalarProperty Name="Id_specialisation" ColumnName="Id_specialisation" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductSales">
-            <EntityTypeMapping TypeName="Magnit_dbModel.ProductSales">
-              <MappingFragment StoreEntitySet="ProductSales">
-                <ScalarProperty Name="Id_sale" ColumnName="Id_sale" />
-                <ScalarProperty Name="Id_product" ColumnName="Id_product" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Worker_tasks">
             <EntityTypeMapping TypeName="Magnit_dbModel.Worker_tasks">
               <MappingFragment StoreEntitySet="Worker_tasks">
+                <ScalarProperty Name="DateOfTask" ColumnName="DateOfTask" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_worker" ColumnName="Id_worker" />
                 <ScalarProperty Name="Task_text" ColumnName="Task_text" />

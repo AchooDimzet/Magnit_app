@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Magnit_app"
         mc:Ignorable="d"
-         Title="SOMED RB5 v27 prefinal" Height="900" Width="1600" MinHeight="900" MinWidth="1600" 
+         Title="MagnitApp v27 prefinal" Height="900" Width="1600" MinHeight="900" MinWidth="1600" 
         FontFamily="Malgun Gothic" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" Icon="Recources/MagnitLogo.png">
     <Grid>
         <!--<Border CornerRadius="0 0 10 10" Background="#f0f5ff" 

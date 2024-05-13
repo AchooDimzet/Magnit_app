@@ -25,7 +25,7 @@ namespace Magnit_app.Views.Pages
         public WorkersPage()
         {
             InitializeComponent();
-
+            UpdateDgSource();
         }
 
         private void UpdateDgSource()
@@ -57,6 +57,11 @@ namespace Magnit_app.Views.Pages
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Info_Button_Click(object sender, RoutedEventArgs e)
         {
 
         }

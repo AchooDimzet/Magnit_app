@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Magnit_app.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,37 @@ namespace Magnit_app.Views.Pages
         public TasksPage()
         {
             InitializeComponent();
+            UpdateDgSource();
+        }
+        private void UpdateDgSource()
+        {
+            var tasks = AppData.Context.Worker_tasks.Where(p => p.Is_comleted == false).ToList();
+            WorkersDG.ItemsSource = tasks;
+        }
+
+        private void Edit_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateDgSource();
+        }
+
+        private void Add_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

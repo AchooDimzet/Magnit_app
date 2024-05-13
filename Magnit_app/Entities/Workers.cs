@@ -29,17 +29,16 @@ namespace Magnit_app.Entities
         public string Password { get; set; }
         public int Id_store { get; set; }
         public int Id_role { get; set; }
-        public int Id_specialisation { get; set; }
         public bool IsDeleted { get; set; }
         public int Id { get; set; }
         public int Gender { get; set; }
         public byte[] Photo { get; set; }
+        public string Phone { get; set; }
     
         public virtual Gender Gender1 { get; set; }
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sales> Sales { get; set; }
-        public virtual Specialisations Specialisations { get; set; }
         public virtual Store Store { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Worker_tasks> Worker_tasks { get; set; }
