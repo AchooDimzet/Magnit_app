@@ -38,12 +38,12 @@
                 <Image.Source>
                     <Binding Path="">
                         <Binding.TargetNullValue>
-                            <BitmapImage  UriSource="/Recources/person.png"/>
+                            <BitmapImage  UriSource="/Recources/image.png"/>
                         </Binding.TargetNullValue>
                     </Binding>
                 </Image.Source>
             </Image>
-            <Button Content="Выбрать фото" Name="BtnAddPhoto"  FontSize="16" FontWeight="Bold" Margin="10 5"/>
+            <Button Content="Выбрать фото" Name="BtnAddPhoto" Click="BtnAddPhoto_Click" FontSize="16" FontWeight="Bold" Margin="10 5"/>
         </StackPanel>
     </Grid>
 </Window>

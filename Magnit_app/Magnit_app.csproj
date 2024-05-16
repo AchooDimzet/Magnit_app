@@ -263,7 +263,6 @@
   <ItemGroup>
     <Resource Include="Recources\MagnitLogo.png" />
     <Resource Include="Properties\MagnitLogo.png" />
-    <Resource Include="Recources\person.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Pages\Med\" />
@@ -279,6 +278,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Recources\image.png" />
+    <Resource Include="Recources\person.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

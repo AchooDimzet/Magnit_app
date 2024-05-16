@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d282404ccb754285bba142e9a1560597" Name="Diagram1">
-        <EntityTypeShape EntityType="Magnit_dbModel.ClientDiscount" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="Magnit_dbModel.ClientDiscount" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="Magnit_dbModel.Gender" Width="1.5" PointX="0.75" PointY="4.5" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Product_category" Width="1.5" PointX="6" PointY="9.875" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Product_items" Width="1.5" PointX="8.25" PointY="9.375" />
-        <EntityTypeShape EntityType="Magnit_dbModel.ProductSales" Width="1.5" PointX="10.5" PointY="5.75" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Roles" Width="1.5" PointX="3.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Sales" Width="1.5" PointX="8.25" PointY="5.625" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Store" Width="1.5" PointX="3.75" PointY="1.375" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Product_category" Width="1.5" PointX="6" PointY="10.125" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Product_items" Width="1.5" PointX="8.25" PointY="9.625" />
+        <EntityTypeShape EntityType="Magnit_dbModel.ProductSales" Width="1.5" PointX="10.5" PointY="5.875" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Roles" Width="1.5" PointX="3.75" PointY="7.875" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Sales" Width="1.5" PointX="8.25" PointY="5.875" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Store" Width="1.5" PointX="3.75" PointY="1.5" />
         <EntityTypeShape EntityType="Magnit_dbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Magnit_dbModel.Workers" Width="1.5" PointX="6" PointY="3.25" />
         <EntityTypeShape EntityType="Magnit_dbModel.Worker_tasks" Width="1.5" PointX="8.25" PointY="2.875" />

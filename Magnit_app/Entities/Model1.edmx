@@ -92,11 +92,13 @@
             <PropertyRef Name="Id_worker" />
             <PropertyRef Name="Task_text" />
             <PropertyRef Name="Is_comleted" />
+            <PropertyRef Name="DateOfTask" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Id_worker" Type="int" Nullable="false" />
           <Property Name="Task_text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Is_comleted" Type="bit" Nullable="false" />
+          <Property Name="DateOfTask" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
@@ -114,6 +116,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Gender" Type="int" Nullable="false" />
           <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" Nullable="false" />
         </EntityType>
         <Association Name="FK_ClientDiscount_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -239,7 +242,8 @@
     [Worker_tasks].[Id] AS [Id], 
     [Worker_tasks].[Id_worker] AS [Id_worker], 
     [Worker_tasks].[Task_text] AS [Task_text], 
-    [Worker_tasks].[Is_comleted] AS [Is_comleted]
+    [Worker_tasks].[Is_comleted] AS [Is_comleted], 
+    [Worker_tasks].[DateOfTask] AS [DateOfTask]
     FROM [dbo].[Worker_tasks] AS [Worker_tasks]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_ClientDiscount_Gender" Association="Self.FK_ClientDiscount_Gender">
@@ -439,6 +443,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gender" Type="Int32" Nullable="false" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender1" Relationship="Magnit_dbModel.FK_Workers_Gender" FromRole="Workers" ToRole="Gender" />
           <NavigationProperty Name="Roles" Relationship="Magnit_dbModel.FK_Workers_Roles" FromRole="Workers" ToRole="Roles" />
           <NavigationProperty Name="Sales" Relationship="Magnit_dbModel.FK_Sales_Workers" FromRole="Workers" ToRole="Sales" />
@@ -451,11 +456,13 @@
             <PropertyRef Name="Id_worker" />
             <PropertyRef Name="Task_text" />
             <PropertyRef Name="Is_comleted" />
+            <PropertyRef Name="DateOfTask" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Id_worker" Type="Int32" Nullable="false" />
           <Property Name="Task_text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Is_comleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateOfTask" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Workers" Relationship="Magnit_dbModel.FK_Worker_tasks_Workers" FromRole="Worker_tasks" ToRole="Workers" />
         </EntityType>
         <Association Name="FK_ClientDiscount_Gender">
@@ -566,7 +573,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -662,6 +669,7 @@
           <EntitySetMapping Name="Workers">
             <EntityTypeMapping TypeName="Magnit_dbModel.Workers">
               <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -680,6 +688,7 @@
           <EntitySetMapping Name="Worker_tasks">
             <EntityTypeMapping TypeName="Magnit_dbModel.Worker_tasks">
               <MappingFragment StoreEntitySet="Worker_tasks">
+                <ScalarProperty Name="DateOfTask" ColumnName="DateOfTask" />
                 <ScalarProperty Name="Is_comleted" ColumnName="Is_comleted" />
                 <ScalarProperty Name="Task_text" ColumnName="Task_text" />
                 <ScalarProperty Name="Id_worker" ColumnName="Id_worker" />

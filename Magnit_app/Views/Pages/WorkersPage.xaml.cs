@@ -1,4 +1,5 @@
 ﻿using Magnit_app.Classes;
+using Magnit_app.Entities;
 using Magnit_app.Views.Windows;
 using System;
 using System.Collections.Generic;
@@ -53,17 +54,32 @@ namespace Magnit_app.Views.Pages
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            AddWorkerWindow window = new AddWorkerWindow((sender as Button).DataContext as Workers);
+            window.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Вы действительно хотите удалить запись?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var workers = WorkersDG.SelectedItem as Workers;
+                    workers.IsDeleted = true;
+                    AppData.Context.SaveChanges();
+                    UpdateDgSource();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void Info_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            InfoWorker window = new InfoWorker((sender as Button).DataContext as Workers);
+            window.ShowDialog();
         }
     }
 }
