@@ -40,8 +40,6 @@ namespace Magnit_app.Views.Windows
 
             CbWorker.SelectedIndex = selectedTask.Id_worker;
             TbTextOfTask.Text = selectedTask.Task_text;
-
-            
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -55,7 +53,15 @@ namespace Magnit_app.Views.Windows
                     DateOfTask = DateTime.Now,
                     Is_comleted = false
                 });
-                 
+                AppData.Context.SaveChanges();
+                this.Close();
+            }
+            else
+            {
+                currentTask.Id_worker = (CbWorker.SelectedItem as Workers).Id;
+                currentTask.Task_text = TbTextOfTask.Text;
+                currentTask.DateOfTask = currentTask.DateOfTask;
+
             }
         }
     }

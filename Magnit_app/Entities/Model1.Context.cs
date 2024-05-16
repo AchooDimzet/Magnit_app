@@ -27,6 +27,7 @@ namespace Magnit_app.Entities
     
         public virtual DbSet<ClientDiscount> ClientDiscount { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<Product_category> Product_category { get; set; }
         public virtual DbSet<Product_items> Product_items { get; set; }
         public virtual DbSet<ProductSales> ProductSales { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }

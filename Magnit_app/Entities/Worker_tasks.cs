@@ -18,7 +18,6 @@ namespace Magnit_app.Entities
         public int Id_worker { get; set; }
         public string Task_text { get; set; }
         public bool Is_comleted { get; set; }
-        public System.DateTime DateOfTask { get; set; }
     
         public virtual Workers Workers { get; set; }
     }

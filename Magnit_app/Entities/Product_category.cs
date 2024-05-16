@@ -12,23 +12,18 @@ namespace Magnit_app.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Product_items
+    public partial class Product_category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product_items()
+        public Product_category()
         {
-            this.ProductSales = new HashSet<ProductSales>();
+            this.Product_items = new HashSet<Product_items>();
         }
     
-        public int Article_number { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Quantity { get; set; }
-        public int Price { get; set; }
-        public byte[] Photo { get; set; }
-        public int Category { get; set; }
     
-        public virtual Product_category Product_category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductSales> ProductSales { get; set; }
+        public virtual ICollection<Product_items> Product_items { get; set; }
     }
 }

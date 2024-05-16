@@ -33,7 +33,6 @@ namespace Magnit_app.Entities
         public int Id { get; set; }
         public int Gender { get; set; }
         public byte[] Photo { get; set; }
-        public string Phone { get; set; }
     
         public virtual Gender Gender1 { get; set; }
         public virtual Roles Roles { get; set; }
