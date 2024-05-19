@@ -10,12 +10,12 @@
         <EntityTypeShape EntityType="Magnit_dbModel.Product_category" Width="1.5" PointX="6" PointY="10.125" />
         <EntityTypeShape EntityType="Magnit_dbModel.Product_items" Width="1.5" PointX="8.25" PointY="9.625" />
         <EntityTypeShape EntityType="Magnit_dbModel.ProductSales" Width="1.5" PointX="10.5" PointY="5.875" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Roles" Width="1.5" PointX="3.75" PointY="7.875" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Roles" Width="1.5" PointX="3.75" PointY="1.5" />
         <EntityTypeShape EntityType="Magnit_dbModel.Sales" Width="1.5" PointX="8.25" PointY="5.875" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Store" Width="1.5" PointX="3.75" PointY="1.5" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Store" Width="1.5" PointX="3.75" PointY="7.875" />
         <EntityTypeShape EntityType="Magnit_dbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Magnit_dbModel.Workers" Width="1.5" PointX="6" PointY="3.25" />
         <EntityTypeShape EntityType="Magnit_dbModel.Worker_tasks" Width="1.5" PointX="8.25" PointY="2.875" />
+        <EntityTypeShape EntityType="Magnit_dbModel.Workers" Width="1.5" PointX="6" PointY="3.25" />
         <AssociationConnector Association="Magnit_dbModel.FK_ClientDiscount_Gender" />
         <AssociationConnector Association="Magnit_dbModel.FK_Workers_Gender" />
         <AssociationConnector Association="Magnit_dbModel.FK_Product_items_Product_category" />

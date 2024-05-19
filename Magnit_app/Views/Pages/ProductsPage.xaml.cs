@@ -1,4 +1,6 @@
 ﻿using Magnit_app.Classes;
+using Magnit_app.Entities;
+using Magnit_app.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,17 +37,15 @@ namespace Magnit_app.Views.Pages
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            AddProductWindow window = new AddProductWindow((sender as Button).DataContext as Product_items);
+            window.ShowDialog();
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            AddProductWindow window = new AddProductWindow();
+            window.ShowDialog();
+            UpdateDgSource();
         }
 
         private void Refresh_Button_Click(object sender, RoutedEventArgs e)
@@ -55,7 +55,13 @@ namespace Magnit_app.Views.Pages
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (TBoxSearch.Text != "")
+            {
+                ProductsDG.ItemsSource = null;
+                ProductsDG.ItemsSource = AppData.Context.Product_items.Where(p => p.Article_number.ToString().Contains(TBoxSearch.Text) || p.Name.Contains(TBoxSearch.Text)).ToList();
+            }
+            else
+                UpdateDgSource();
         }
     }
 }

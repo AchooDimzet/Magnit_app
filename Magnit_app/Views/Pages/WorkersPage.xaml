@@ -39,6 +39,21 @@
           CanUserResizeRows="False" Background="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="ФИО" Binding="{Binding FullName}"/>
+                <DataGridTemplateColumn Header="Фото" x:Name="PhotoColumn">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="50" Height="50" Stretch="Fill">
+                                <Image.Source>
+                                    <Binding Path="Photo">
+                                        <Binding.TargetNullValue>
+                                            <BitmapImage UriSource="/Recources/person.png" />
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Width="*" Header="Логин" Binding="{Binding Login}"/>
                 <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Roles.Name}"/>
                 <DataGridTemplateColumn Header="Редактирование" x:Name="EditButtonsColumn">

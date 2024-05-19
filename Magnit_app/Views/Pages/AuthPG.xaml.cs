@@ -35,8 +35,8 @@ namespace Magnit_app.Views.Pages
                 MessageBox.Show("заполните пол логин и пароль", "а где", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            //try
-            //{
+            try
+            {
                 Workers user = AppData.Context.Workers.Where(p => p.Login == TBoxLogin.Text && p.Password == PBPassword.Password).FirstOrDefault();
                 if (user == null)
                 {
@@ -45,17 +45,14 @@ namespace Magnit_app.Views.Pages
                 }
                 AppData.currentUser = user;
                 AppData.MainFrame.Navigate(new TasksPage());
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("заполните поля логина и пароля", "а где", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("заполните поля логина и пароля", "а где", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
        
 

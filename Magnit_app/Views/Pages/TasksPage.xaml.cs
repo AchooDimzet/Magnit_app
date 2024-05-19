@@ -1,4 +1,6 @@
 ﻿using Magnit_app.Classes;
+using Magnit_app.Entities;
+using Magnit_app.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,7 @@ namespace Magnit_app.Views.Pages
         {
             InitializeComponent();
             UpdateDgSource();
+            
         }
         private void UpdateDgSource()
         {
@@ -34,12 +37,26 @@ namespace Magnit_app.Views.Pages
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            AddTaskWindow window = new AddTaskWindow((sender as Button).DataContext as Worker_tasks);
+            window.ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Вы действительно хотите завершить задачу?", "Завершение задачи", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var tasks = WorkersDG.SelectedItem as Worker_tasks;
+                    tasks.Is_comleted = true;
+                    AppData.Context.SaveChanges();
+                    UpdateDgSource();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void Refresh_Button_Click(object sender, RoutedEventArgs e)
@@ -49,12 +66,20 @@ namespace Magnit_app.Views.Pages
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            AddTaskWindow window = new AddTaskWindow();
+            window.ShowDialog();
+            UpdateDgSource();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (TBoxSearch.Text != "")
+            {
+                WorkersDG.ItemsSource = null;
+                WorkersDG.ItemsSource = AppData.Context.Sales.Where(p => p.Workers.First_name.Contains(TBoxSearch.Text) || p.Workers.Last_name.Contains(TBoxSearch.Text) || p.Workers.Patronimyc.Contains(TBoxSearch.Text) || p.Date.ToString().Contains(TBoxSearch.Text)).ToList();
+            }
+            else
+                UpdateDgSource();
         }
     }
 }

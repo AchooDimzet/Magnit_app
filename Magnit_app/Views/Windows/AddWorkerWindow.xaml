@@ -32,7 +32,7 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Пол: " FontSize="16" FontWeight="Bold"/>
-                <ComboBox Name="CbGender"  FontSize="16" DisplayMemberPath="Name"/>
+                <ComboBox Name="CbGender" FontSize="16" DisplayMemberPath="Name"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Телефон: " FontSize="16" FontWeight="Bold"/>
@@ -67,7 +67,7 @@
                     </Binding>
                 </Image.Source>
             </Image>
-            <Button Content="Выбрать фото" Name="BtnAddPhoto"  FontSize="16" FontWeight="Bold" Margin="10 5"/>
+            <Button Content="Выбрать фото" Name="BtnAddPhoto" Click="BtnAddPhoto_Click" FontSize="16" FontWeight="Bold" Margin="10 5"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -57,6 +57,7 @@ namespace Magnit_app.Views.Windows
             {
                 AppData.Context.Product_items.Add(new Product_items()
                 {
+                    
                     Name = TbName.Text,
                     Quantity = Convert.ToInt32(TbQuantity.Text),
                     Category = (CbCategory.SelectedItem as Product_category).Id,

@@ -74,16 +74,14 @@
                     x:Name="BtnSales" Click="BtnSales_Click"
                     Margin="0 0 0 30"/>
             <Button Width="260" Content="Назад" TextBlock.FontSize="16"
-                    Margin="0 0 0 20"
-                    x:Name="BtnBack" Click="BtnBack_Click"/>
+                    Margin="0 260 0 20"
+                    x:Name="BtnBack" Click="BtnBack_Click" Cursor="Hand"/>
             <Button Width="260" Content="В главное меню" TextBlock.FontSize="16"
                     Margin="0 0 0 20"
                     x:Name="BtnBackTM" Click="BtnBackTM_Click"/>
-
-            <Button Width="260" Content="О программе" TextBlock.FontSize="16" 
-                    Margin="0 250 0 0" Name="BtnAbout" Click="BtnAbout_Click"/>
+            
             <Button Width="260" Content="Выйти из системы" TextBlock.FontSize="16" 
-                    Margin="0 20 0 0" Name="BtnQuit" Click="BtnQuit_Click"/>
+                    Margin="0 0 0 0" Name="BtnQuit" Click="BtnQuit_Click"/>
 
 
         </StackPanel>

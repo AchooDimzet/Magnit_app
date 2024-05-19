@@ -17,4 +17,15 @@ namespace Magnit_app.Entities
                 }
             }
         }
+    public partial class ClientDiscount
+    {
+        public string FullName
+        {
+            get
+            {
+                { return Last_name + " " + First_name + " " + Patronimyc; }
+            }
+        }
+    }
+
 }

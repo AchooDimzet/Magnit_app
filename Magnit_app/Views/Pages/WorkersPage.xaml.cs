@@ -31,8 +31,16 @@ namespace Magnit_app.Views.Pages
 
         private void UpdateDgSource()
         {
-            var workers = AppData.Context.Workers.Where(p => p.IsDeleted == false).ToList();
-            WorkersDG.ItemsSource = workers;
+            if (TBoxSearch.Text != "")
+            {
+                WorkersDG.ItemsSource = null;
+                WorkersDG.ItemsSource = AppData.Context.Workers.Where(p => p.First_name.Contains(TBoxSearch.Text) || p.Last_name.Contains(TBoxSearch.Text) || p.Patronimyc.Contains(TBoxSearch.Text)).ToList();
+            }
+            else
+            {
+                var workers = AppData.Context.Workers.Where(p => p.IsDeleted == false).ToList();
+                WorkersDG.ItemsSource = workers;
+            } 
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
@@ -49,7 +57,8 @@ namespace Magnit_app.Views.Pages
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            
+                UpdateDgSource();
         }
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
@@ -74,12 +83,6 @@ namespace Magnit_app.Views.Pages
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-        }
-
-        private void Info_Button_Click(object sender, RoutedEventArgs e)
-        {
-            InfoWorker window = new InfoWorker((sender as Button).DataContext as Workers);
-            window.ShowDialog();
         }
     }
 }

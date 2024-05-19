@@ -34,7 +34,7 @@ namespace Magnit_app.Entities
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Workers> Workers { get; set; }
         public virtual DbSet<Worker_tasks> Worker_tasks { get; set; }
+        public virtual DbSet<Workers> Workers { get; set; }
     }
 }

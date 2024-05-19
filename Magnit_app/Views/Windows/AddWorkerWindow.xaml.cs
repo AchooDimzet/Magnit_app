@@ -44,7 +44,7 @@ namespace Magnit_app.Views.Windows
             DataContext = currentWorker;
 
             CbRole.ItemsSource = AppData.Context.Roles.ToList();
-
+            CbGender.ItemsSource = AppData.Context.Gender.ToList();
             CbStore.ItemsSource = AppData.Context.Store.ToList();
 
             TbFirstName.Text = selectedWorker.First_name;
@@ -65,8 +65,8 @@ namespace Magnit_app.Views.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 if (currentWorker == null)
                 {
                     AppData.Context.Workers.Add(new Workers()
@@ -103,13 +103,13 @@ namespace Magnit_app.Views.Windows
                     AppData.Context.SaveChanges();
                     this.Close();
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-        }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Проверьте правильность введенной информации" + ex, "Ошибка");
+            }
+        
+}
 
         private void BtnAddPhoto_Click(object sender, RoutedEventArgs e)
         {

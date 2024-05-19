@@ -44,24 +44,31 @@ namespace Magnit_app.Views.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (currentTask == null) 
+            try
             {
-                AppData.Context.Worker_tasks.Add(new Worker_tasks()
+                if (currentTask == null)
                 {
-                    Id_worker = (CbWorker.SelectedItem as Workers).Id,
-                    Task_text = TbTextOfTask.Text,
-                    DateOfTask = DateTime.Now,
-                    Is_comleted = false
-                });
-                AppData.Context.SaveChanges();
-                this.Close();
-            }
-            else
-            {
-                currentTask.Id_worker = (CbWorker.SelectedItem as Workers).Id;
-                currentTask.Task_text = TbTextOfTask.Text;
-                currentTask.DateOfTask = currentTask.DateOfTask;
+                    AppData.Context.Worker_tasks.Add(new Worker_tasks()
+                    {
+                        Id_worker = (CbWorker.SelectedItem as Workers).Id,
+                        Task_text = TbTextOfTask.Text,
+                        DateOfTask = DateTime.Now,
+                        Is_comleted = false
+                    });
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    currentTask.Id_worker = (CbWorker.SelectedItem as Workers).Id;
+                    currentTask.Task_text = TbTextOfTask.Text;
+                    currentTask.DateOfTask = currentTask.DateOfTask;
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Проверьте правильность введенной информации" + ex, "Ошибка");
             }
         }
     }

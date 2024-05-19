@@ -39,7 +39,7 @@
       CanUserResizeRows="False" Background="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="ФИО" Binding="{Binding Workers.FullName}"/>
-                <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Roles.Name}"/>
+                <DataGridTextColumn Width="*" Header="Должность" Binding="{Binding Workers.Roles.Name}"/>
                 <DataGridTextColumn Width="*" Header="Задача" Binding="{Binding Task_text}"/>
                 <DataGridTemplateColumn Header="Редактирование" x:Name="EditButtonsColumn">
                     <DataGridTemplateColumn.CellTemplate>
