@@ -65,7 +65,7 @@ namespace Magnit_app.Views.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (TbFirstName.Text != null || TbLastName.Text != null || CbRole.SelectedIndex != -1 || CbGender.SelectedIndex != -1 || TbPhone.Text != null || TbAdress.Text != null || CbStore.SelectedIndex != -1 || TbLogin.Text != null || TbPassword.Password != null)
             {
                 if (currentWorker == null)
                 {
@@ -104,9 +104,10 @@ namespace Magnit_app.Views.Windows
                     this.Close();
                 }
             }
-            catch (Exception ex)
+            
+            else
             {
-                MessageBox.Show("Проверьте правильность введенной информации" + ex, "Ошибка");
+                MessageBox.Show("Проверьте правильность введенной информации", "Ошибка");
             }
         
 }

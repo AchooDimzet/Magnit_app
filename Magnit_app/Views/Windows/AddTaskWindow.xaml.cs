@@ -44,7 +44,7 @@ namespace Magnit_app.Views.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if(CbWorker.SelectedIndex != -1 || TbTextOfTask.Text != null) 
             {
                 if (currentTask == null)
                 {
@@ -66,9 +66,9 @@ namespace Magnit_app.Views.Windows
 
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Проверьте правильность введенной информации" + ex, "Ошибка");
+               
             }
         }
     }

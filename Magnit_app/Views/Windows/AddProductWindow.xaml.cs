@@ -52,30 +52,37 @@ namespace Magnit_app.Views.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Добавить Try-Catch
-            if (currentProduct == null)
+            if (TbName.Text != null || TbQuantity.Text != null || CbCategory.SelectedIndex != -1 || TbPrice.Text != null)
             {
-                AppData.Context.Product_items.Add(new Product_items()
+                if (currentProduct == null)
                 {
-                    
-                    Name = TbName.Text,
-                    Quantity = Convert.ToInt32(TbQuantity.Text),
-                    Category = (CbCategory.SelectedItem as Product_category).Id,
-                    Price = Convert.ToInt32(TbPrice.Text),
-                    Photo = _image
-                });
-                AppData.Context.SaveChanges();
-                this.Close();
+                    AppData.Context.Product_items.Add(new Product_items()
+                    {
+
+                        Name = TbName.Text,
+                        Quantity = Convert.ToInt32(TbQuantity.Text),
+                        Category = (CbCategory.SelectedItem as Product_category).Id,
+                        Price = Convert.ToInt32(TbPrice.Text),
+                        Photo = _image
+                    });
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    currentProduct.Name = TbName.Text;
+                    currentProduct.Quantity = Convert.ToInt32(TbQuantity.Text);
+                    currentProduct.Category = (CbCategory.SelectedItem as Product_category).Id;
+                    currentProduct.Price = Convert.ToInt32(TbPrice.Text);
+                    currentProduct.Photo = _image;
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
             }
+            //TODO: Добавить Try-Catch
             else
             {
-                currentProduct.Name = TbName.Text;
-                currentProduct.Quantity = Convert.ToInt32(TbQuantity.Text);
-                currentProduct.Category = (CbCategory.SelectedItem as Product_category).Id;
-                currentProduct.Price = Convert.ToInt32(TbPrice.Text);
-                currentProduct.Photo = _image;
-                AppData.Context.SaveChanges();
-                this.Close();
+                MessageBox.Show("Проверьте правильность введенной информации", "Ошибка");
             }
         }
 
