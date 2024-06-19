@@ -38,5 +38,19 @@ namespace Magnit_app.Views.Windows
             DgProducts.ItemsSource = null;
             DgProducts.ItemsSource = products;
         }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog pd = new PrintDialog();
+            if (pd.ShowDialog() == true)
+            {
+                int pagemargins = 5;
+
+                Size pageSize = new Size(pd.PrintableAreaWidth - pagemargins * 2,
+                    pd.PrintableAreaHeight - 20);
+
+                pd.PrintVisual(Printpanel, "Идет печать");
+            }
+        }
     }
 }
