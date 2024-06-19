@@ -62,5 +62,11 @@ namespace Magnit_app.Views.Pages
         {
             UpdateDgSource();
         }
+
+        private void Report_button_Click(object sender, RoutedEventArgs e)
+        {
+            ReportSalesWindow window = new ReportSalesWindow();
+            window.ShowDialog();
+        }
     }
 }

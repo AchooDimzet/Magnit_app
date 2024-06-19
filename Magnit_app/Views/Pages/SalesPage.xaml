@@ -69,5 +69,6 @@
             <!--<Button Name="Edit_Button" Width="250" Content="Редактировать запись" Click="Edit_Button_Click" Grid.Row="4" Grid.Column="1" Margin="5" TextBlock.FontSize="18"/>-->
         </StackPanel>
         <Button Name="Refresh_Button" Width="200" Content="Обновить" Click="Refresh_Button_Click_1" Grid.Row="4" Grid.Column="1" Margin="0 5 20 5" TextBlock.FontSize="18" HorizontalAlignment="Right"/>
+        <Button Name="Report_button" Width="200" Content="Отчет" Click="Report_button_Click" Grid.Row="4" Grid.Column="1" Margin="0 5 20 5" TextBlock.FontSize="18" HorizontalAlignment="Center"/>
     </Grid>
 </Page>
